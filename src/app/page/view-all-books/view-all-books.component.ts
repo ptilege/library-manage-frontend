@@ -48,4 +48,13 @@ export class ViewAllBooksComponent implements OnInit{
     this.selectedBook=book;
     console.log("setSelectedBook"+book.id);
   }
+
+  saveBook(){
+    let postapi="http://localhost:8080/book/add";
+    this.http.post(postapi,this.selectedBook).subscribe(data=>{
+      console.log("save");
+      this.loadBooks();
+      this.selectedBook={};
+    })
+  }
 }
